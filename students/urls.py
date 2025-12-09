@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from .views import MyModelListView, MyModelDetailView, MyModelCreateView, MyModelUpdateView, MyModelDeleteView
 
 app_name = 'students'
 
@@ -10,4 +11,9 @@ urlpatterns = [
     path("index/", views.index, name="index"),
     path("students_list/", views.students_list, name="students_list"),
     path("students_detail/<int:student_id>/", views.students_detail, name="students_detail"),
+    path('mymodel/', MyModelListView.as_view(), name='mymodel_list'),
+    path('mymodel/<int:pk>/', MyModelDetailView.as_view(), name='mymodel_detail'),
+    path('mymodel/new/', MyModelCreateView.as_view(), name='mymodel_create'),
+    path('mymodel/<int:pk>/edit/', MyModelUpdateView.as_view(), name='mymodel_edit'),
+    path('mymodel/<int:pk>/delete/', MyModelDeleteView.as_view(), name='mymodel_delete'),
 ]
