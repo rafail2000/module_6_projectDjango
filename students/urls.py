@@ -9,8 +9,12 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
     path("example/", views.example_view, name="example"),
     path("index/", views.index, name="index"),
-    path("students_list/", views.students_list, name="students_list"),
+    path("student/", views.students_list, name="students_list"),
     path("students_detail/<int:student_id>/", views.students_detail, name="students_detail"),
+    path("student/create/", views.StudentCreateView.as_view(), name="student_create"),
+    path("student/update/<int:pk>/", views.StudentUpdateView.as_view(), name="student_update"),
+
+
     path('mymodel/', MyModelListView.as_view(), name='mymodel_list'),
     path('mymodel/<int:pk>/', MyModelDetailView.as_view(), name='mymodel_detail'),
     path('mymodel/new/', MyModelCreateView.as_view(), name='mymodel_create'),

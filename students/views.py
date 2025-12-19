@@ -4,7 +4,22 @@ from django.shortcuts import render
 from django.http import HttpResponse, Http404
 from django.urls import reverse_lazy
 
+from students.forms import StudentForm
 from .models import Student, MyModel
+
+
+class StudentCreateView(CreateView):
+    model = Student
+    form_class = StudentForm
+    template_name = 'students/student_form.html'
+    success_url = reverse_lazy('students:students_list')
+
+
+class StudentUpdateView(UpdateView):
+    model = Student
+    form_class = StudentForm
+    template_name = 'students/student_form.html'
+    success_url = reverse_lazy('students:students_list')
 
 
 class MyModelCreateView(CreateView):
