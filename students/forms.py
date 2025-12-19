@@ -8,6 +8,35 @@ class StudentForm(forms.ModelForm):
         model = Student
         fields = ["first_name", "last_name", "year", "email", "enrollment_date"]
 
+    def __init__(self, *args, **kwargs):
+        super(StudentForm, self).__init__(*args, **kwargs)
+
+        self.fields['first_name'].widget.attrs.update({
+            'class':  'form-control',
+            'placeholder': 'Введите имя'
+        })
+
+        self.fields['last_name'].widget.attrs.update({
+            'class':  'form-control',
+            'placeholder': 'Введите фамилию'
+        })
+
+        self.fields['year'].widget.attrs.update({
+            'class':  'form-control',
+            'placeholder': 'Введите курс'
+        })
+
+        self.fields['email'].widget.attrs.update({
+            'class':  'form-control',
+            'placeholder': 'Введите почту'
+        })
+
+        self.fields['enrollment_date'].widget.attrs.update({
+            'class':  'form-control',
+            'placeholder': 'Введите дату'
+        })
+
+
     def clean_email(self):
         email = self.cleaned_data.get("email")
         if not email.endswith('@example.com'):
