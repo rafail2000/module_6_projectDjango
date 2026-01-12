@@ -8,6 +8,18 @@ from django.urls import reverse_lazy
 from students.forms import StudentForm
 from .models import Student, MyModel
 
+from django.core.cache import cache
+
+
+def my_view(request):
+    data = cache.get('my_key')
+
+    if not data:
+        data = 'some expensive computation'
+        cache.set('my_key', data, 60 * 15)
+
+    return HttpResponse(data)
+
 
 class PromoteStudentView(LoginRequiredMixin, View):
     def post(self, request, student_id):
